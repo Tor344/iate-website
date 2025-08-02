@@ -12,6 +12,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: check erron
+        run: npm cache clean -force
+
       - name: Install
         run: npm install
 
