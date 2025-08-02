@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в VK</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <main class="login-container">
+        <h1>Вход в VK</h1>
+        <p>Лучшая возможность для депутатов разрушить интернет в России</p>
+
+        <form method="POST" action="{{ url_for('login') }}" class="login-form">
+            <input
+                type="text"
+                name="login"
+                placeholder="Логин"
+                required
+                class="{% if error %}input-error{% endif %}"
+            >
+            <input
+                type="password"
+                name="password"
+                placeholder="Пароль"
+                required
+                class="{% if error %}input-error{% endif %}"
+            >
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+            <button type="submit">Войти</button>
+        </form>
+    </main>
+</body>
+</html>

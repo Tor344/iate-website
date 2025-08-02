@@ -1,0 +1,11 @@
+
+.infoTable td
+{
+	padding: 5px 5px 5px 5px !important;
+}
+.VedTableNew td {
+    padding: 1px  !important;
+}
+.back{
+    color: black;
+}
