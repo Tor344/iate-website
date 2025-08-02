@@ -16,7 +16,7 @@ jobs:
         run: sudo apt update && sudo apt upgrade
 
       - name: Install
-        run: npm install
+        run: npm install typecheck
 
       - name: Run Typecheck
         run: npm run typecheck
