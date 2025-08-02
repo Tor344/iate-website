@@ -1,22 +1,20 @@
-name: Deploy to Digital Ocean
+name: Docker Image CI
 
 on:
   push:
-    branches:
-      - main # Set a branch to deploy when pushed
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  deploy:
+
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: updata
-        run: sudo apt update && sudo apt upgrade
-
-      - name: Install
-        run: npm install typecheck
-
-      - name: Run Typecheck
-        run: npm run typecheck
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag iate-website:1.0.0
+    - name: seave docker as .tar
+      run: docker save -o iate-website.tar iate-website:1.0.0
