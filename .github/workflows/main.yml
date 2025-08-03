@@ -10,10 +10,19 @@ jobs:
 
   build:
 
-    runs-on: "self-hosted"
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag iate-website:1.0.0
     - name: seave docker as .tar
       run: docker save -o iate-website.tar iate-website:1.0.0
+
+    - uses: up9cloud/action-rsync@master
+      env:
+        HOST: ${{secrets.HOST}}
+        KEY: ${{secrets.DEPLOY_SSH_KEY}}
+        TARGET: iate-website.tar
+
+
+
