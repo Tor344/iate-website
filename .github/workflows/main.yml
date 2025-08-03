@@ -1,18 +1,11 @@
 name: Docker Image CI
 
 on:
-  workflow_dispatch:  # Это позволяет запускать workflow вручную
-    inputs:
-      host:
-        description: 'Remote server host (e.g., user@example.com)'
-        required: true
-      ssh_key:
-        description: 'SSH private key for deployment'
-        required: true
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
 
   build:
@@ -27,8 +20,8 @@ jobs:
 
     - uses: up9cloud/action-rsync@master
       env:
-        HOST: ${{ github.event.inputs.host || secrets.HOST }}
-        KEY: ${{ github.event.inputs.ssh_key || secrets.DEPLOY_SSH_KEY }}
+        HOST: ${{ secrets.HOST }}
+        KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         TARGET: iate-website.tar
 
 
